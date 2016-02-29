@@ -6,23 +6,24 @@
 </head>
 <body>
 	<button type="button" id="pick">Pick File</button>
-	
-	<script src="filepicker.js"></script>
+	<pre id="fileInfo"></pre>
+
+	<script src="main.js"></script>
 	<script>
 		function initPicker() {
 			var picker = new FilePicker({
-				apiKey: 'PUT_YOUR_API_KEY_HERE',
-				clientId: 621198453335-vl447kek8n0401mletqvpalbckbpvil2.apps.googleusercontent.com,
+				apiKey: 'AIzaSyCXgpDtz3VjnFDWXzSj45c9Z3cLvfjhTVA',
+				clientId: '509406725962-2bt4q7sn8d5u6qpl9ih4n6o3e88qg32s',
 				buttonEl: document.getElementById('pick'),
 				onSelect: function(file) {
 					console.log(file);
-					alert('Selected ' + file.title);
+					document.getElementById('fileInfo').innerHTML = file.title + '\n' + file.alternateLink;
 				}
-			});	
+			});
 		}
 	</script>
-	
-	<script src="https://www.google.com/jsapi?key=PUT_YOUR_API_KEY_HERE"></script>
+
+	<script src="https://www.google.com/jsapi?key=AIzaSyCXgpDtz3VjnFDWXzSj45c9Z3cLvfjhTVA"></script>
 	<script src="https://apis.google.com/js/client.js?onload=initPicker"></script>
 </body>
 </html>
