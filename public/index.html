@@ -1,29 +1,18 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8" />
-	<title>Google Drive File Picker Example</title>
-</head>
-<body>
-	<button type="button" id="pick">Pick File</button>
-	<pre id="fileInfo"></pre>
+<html ng-app="moduleOne">
+    <head>
+        <title>Google Picker Example</title>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js"></script>
+        <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+        <script type="text/javascript" src="main.js"></script>
+        <script type="text/javascript" src="picker.js"></script>
+   
+    </head>
+    <body ng-controller="mainController">
+      <button ng-click="loadFile()">Load File</button>
 
-	<script src="main.js"></script>
-	<script>
-		function initPicker() {
-			var picker = new FilePicker({
-				apiKey: 'AIzaSyCXgpDtz3VjnFDWXzSj45c9Z3cLvfjhTVA',
-				clientId: '509406725962-2bt4q7sn8d5u6qpl9ih4n6o3e88qg32s',
-				buttonEl: document.getElementById('pick'),
-				onSelect: function(file) {
-					console.log(file);
-					document.getElementById('fileInfo').innerHTML = file.title + '\n' + file.alternateLink;
-				}
-			});
-		}
-	</script>
 
-	<script src="https://www.google.com/jsapi?key=AIzaSyCXgpDtz3VjnFDWXzSj45c9Z3cLvfjhTVA"></script>
-	<script src="https://apis.google.com/js/client.js?onload=initPicker"></script>
-</body>
+    
+    </body>
 </html>
+
