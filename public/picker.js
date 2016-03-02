@@ -68,21 +68,33 @@ angular.module('moduleOne')
       if (data.action == google.picker.Action.PICKED) {
           var fileId = data.docs[0].id;
           console.log(fileId)
-          document.getElementById('googleFileId').value = fileId;
+          document.getElementById(fileId)
           var name = data.docs[0].name;
           var url = data.docs[0].url;
           var accessToken = gapi.auth.getToken().access_token;
-          var request = new XMLHttpRequest();
-          request.open('GET', 'https://www.googleapis.com/drive/v2/files/' + fileId);
-          request.setRequestHeader('Authorization', 'Bearer ' + accessToken);
-          request.addEventListener('load', function() {
-              var item = JSON.parse(request.responseText);
-              window.open(item.webContentLink,"_self"); //Download file in Client Side 
-          });
-          request.send();
+          //var request = new XMLHttpRequest();
+          //request.open('GET', 'https://www.googleapis.com/drive/v2/files/' + fileId + '/export?mimeType="csv"');
+          //request.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+          //request.addEventListener('load', function() {
+          //    var item = JSON.parse(request.responseText);
+          //    console.log(item)
+              //window.open(item.webContentLink,"_self"); //Download file in Client Side 
+          var request = {
+              method: 'GET',
+              url: 'https://www.googleapis.com/drive/v3/files/' + fileId + '/export?mimeType="csv"',
+              headers: {'Authorization':'Bearer ' + accessToken},  
+            }    
+          //});
+          //request.send();
+          $http(request)
+            .then(function(serverData){
+              console.log(serverData.data)
+              var item = JSON.parse(serverData.data)
+              console.log(item)
+            })
       }
         var message = 'File ID of choosen file : ' + fileId;
-        document.getElementById('result').innerHTML = message;
+        document.getElementById(message)
     }
 
     return {

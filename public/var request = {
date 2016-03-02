@@ -1,0 +1,6 @@
+var request = {
+	method: 'GET',
+	url: https://www.googleapis.com/drive/v2/files/' + fileId + '/export?mimeType="csv",
+	headers: {'Authorization'}, 
+	data: {'Bearer ' + accessToken}
+}
