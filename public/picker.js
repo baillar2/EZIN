@@ -81,17 +81,20 @@ angular.module('moduleOne')
               //window.open(item.webContentLink,"_self"); //Download file in Client Side 
           var request = {
               method: 'GET',
-              url: 'https://www.googleapis.com/drive/v3/files/' + fileId + '/export?mimeType="csv"',
+              url: 'https://www.googleapis.com/drive/v3/files/' + fileId + '?alt=media',
               headers: {'Authorization':'Bearer ' + accessToken},  
             }    
           //});
           //request.send();
-          $http(request)
-            .then(function(serverData){
-              console.log(serverData.data)
-              var item = JSON.parse(serverData.data)
-              console.log(item)
-            })
+          $http.get('/api/drive',{url:'https://www.googleapis.com/drive/v3/files/' + fileId + '?alt=media',
+                                  header: {'Authorization':'Bearer ' + accessToken}
+                                })
+          //$http(request)
+          //  .then(function(serverData){
+          //    console.log(serverData.data)
+              //var item = JSON.parse(serverData.data)
+              //console.log(item)
+          //  })
       }
         var message = 'File ID of choosen file : ' + fileId;
         document.getElementById(message)
